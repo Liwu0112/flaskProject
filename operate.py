@@ -37,7 +37,7 @@ class Design():
         return data
     def saveData_csv(self):
         data = Design().getData()
-        with open('C:\\Users\\Xiao-Li\\Desktop\\flaskProject1\\数据1.csv', 'w', newline='', encoding='utf-8') as file:
+        with open('C:\\Users\\Xiao-Li\\Desktop\\flaskProject\\数据1.csv', 'w', newline='', encoding='utf-8') as file:
             csv_writer = writer(file)
             csv_writer.writerow(['类别','课程名','学习人数','价格','节数'])
             csv_writer.writerows(data)
@@ -79,7 +79,7 @@ class Design():
             title_opts=opts.TitleOpts(title="各类别占比"),
             legend_opts=opts.LegendOpts(orient="vertical",pos_top="15%",pos_left="2%")
         )
-        plobj.render('C:\\Users\\Xiao-Li\\Desktop\\flaskProject1\\templates\\饼图.html')
+        plobj.render('C:\\Users\\Xiao-Li\\Desktop\\flaskProject\\templates\\饼图.html')
     def draw_bar(self):
         result = self.connect_sql()
         data = pd.DataFrame(list(result),columns=['类别','课程名','学习人数','价格','节数'])
@@ -91,7 +91,7 @@ class Design():
             title_opts=opts.TitleOpts(title="不同科目浏览量"),
             xaxis_opts=opts.AxisOpts(axislabel_opts=opts.LabelOpts(rotate=-25))
         )
-        p2obj.render('C:\\Users\\Xiao-Li\\Desktop\\flaskProject1\\templates\\柱状图.html')
+        p2obj.render('C:\\Users\\Xiao-Li\\Desktop\\flaskProject\\templates\\柱状图.html')
     def word_cloud(self):
         result = self.connect_sql()
         data = pd.DataFrame(list(result),columns=['类别','课程名','学习人数','价格','节数'])
@@ -101,7 +101,7 @@ class Design():
             .add("", words, word_size_range=[5, 100])
             .set_global_opts(title_opts=opts.TitleOpts(title="ciyun"))
         )
-        wordcloud.render("C:\\Users\\Xiao-Li\\Desktop\\flaskProject1\\templates\\词云.html")
+        wordcloud.render("C:\\Users\\Xiao-Li\\Desktop\\flaskProject\\templates\\词云.html")
     def yuce(self):
         result = self.connect_sql()
         data = pd.DataFrame(list(result),columns=['类别','课程名','学习人数','价格','节数'])
