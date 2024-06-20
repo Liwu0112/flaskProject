@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据分析</title>
+    <style>
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 70px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        ul li {
+            margin: 0 10px;
+        }
+
+        ul li a {
+            display: block;
+            padding: 10px 20px;
+            background-color: #f2f2f2;
+            color: #333333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        ul li a:hover {
+            background-color: #333333;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h1>在线学习平台</h1>
+<ul>
+    <li><a href="{{ url_for('data_view') }}">查看数据</a></li>
+    <li><a href="{{ url_for('pie_view') }}">查看饼图</a></li>
+    <li><a href="{{ url_for('save_csv') }}">导出csv</a></li>
+    <li><a href="{{ url_for('draw_bar') }}">查看柱状图</a></li>
+    <li><a href="{{ url_for('word_cloud') }}">查看词云</a></li>
+    <li><a href="{{ url_for('save_db') }}">保存数据到数据库</a></li>
+    <li><a href="{{ url_for('yuce') }}">预测</a></li>
+</ul>
+</body>
+</html>
