@@ -57,6 +57,21 @@ class Design():
         connection.commit()
         cursor.close()
         connection.close()
+    def yuce(self):
+        result = self.connect_sql()
+        data = pd.DataFrame(list(result), columns=['类别', '课程名', '学习人数', '价格', '节数'])
+        # 数据预处理
+        X = data[['学习人数', '节数']]  # 选择特征
+        y = data['类别']  # 目标变量
+        # 对数据进行缩放处理
+        scaler = StandardScaler()
+        X = scaler.fit_transform(X)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        model = LogisticRegression(max_iter=1000)  # 增加最大迭代次数
+        model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+        return accuracy
     def connect_sql(self):
         conn = pymysql.connect(host='localhost', user='root',password=str(123456), port=3306, db='data')
         cur = conn.cursor()
@@ -102,18 +117,3 @@ class Design():
             .set_global_opts(title_opts=opts.TitleOpts(title="ciyun"))
         )
         wordcloud.render("C:\\Users\\Xiao-Li\\Desktop\\flaskProject\\templates\\词云.html")
-    def yuce(self):
-        result = self.connect_sql()
-        data = pd.DataFrame(list(result),columns=['类别','课程名','学习人数','价格','节数'])
-        # 数据预处理
-        X = data[['学习人数', '节数']]  # 选择特征
-        y = data['类别']   # 目标变量
-        # 对数据进行缩放处理
-        scaler = StandardScaler()
-        X = scaler.fit_transform(X)
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        model = LogisticRegression(max_iter=1000) # 增加最大迭代次数
-        model.fit(X_train, y_train)
-        y_pred = model.predict(X_test)
-        accuracy = accuracy_score(y_test, y_pred)
-        return accuracy
